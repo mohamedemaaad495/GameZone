@@ -1,0 +1,14 @@
+﻿global using Microsoft.EntityFrameworkCore;
+global using GanmeZone.Data;
+global using System.ComponentModel.DataAnnotations;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.AspNetCore.Mvc.Rendering;
+global using GanmeZone.ViewModels;
+global using GanmeZone.Models;
+global using GanmeZone.Settings;
+global using static System.Net.Mime.MediaTypeNames;
+global using System.Linq;
+global using GanmeZone.Attributes;
+global using Microsoft.EntityFrameworkCore.Metadata;
+global using Microsoft.VisualBasic;
+global using GanmeZone.Serveices;
