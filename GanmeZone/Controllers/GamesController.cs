@@ -52,5 +52,27 @@
 
             return RedirectToAction(nameof(Index));
         }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var game = await _gamesService.GetByIdAsync(id);
+
+            if(game is null)
+                return NotFound();
+
+            EditGameFormViewModel viewModel = new()
+            {
+                Id=id,
+                Name=game.Name,
+                Description=game.Description,
+                CategoryId=game.CategoryId,
+                SelectedDevices=game.Devices.Select(d=>d.DeviceId).ToList(),
+                Categories=_categoriesService.GetSelectListOfCategories(),
+                Devices=_devicesService.GetSelectListOfDevices(),
+                CurrentCover=game.Cover
+            };
+
+            return View(viewModel);
+        }
     }
 }
