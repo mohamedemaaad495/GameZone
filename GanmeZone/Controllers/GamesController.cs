@@ -74,5 +74,24 @@
 
             return View(viewModel);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(EditGameFormViewModel model)
+        {
+            if(!ModelState.IsValid)
+            {
+                model.Categories=_categoriesService.GetSelectListOfCategories();
+                model.Devices=_devicesService.GetSelectListOfDevices();
+                return View(model);
+            }
+
+            var game=await _gamesService.Edit(model);
+
+            if (game is null)
+                return BadRequest();
+
+            return RedirectToAction(nameof(Index)); 
+
+        }
     }
 }
